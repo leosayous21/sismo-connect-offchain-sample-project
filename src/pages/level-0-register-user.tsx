@@ -12,11 +12,11 @@ import { devGroups } from "../../config";
 export const sismoConnectConfig: SismoConnectClientConfig = {
   // you can create a new Sismo Connect app at https://factory.sismo.io
   appId: "0xf4977993e52606cfd67b7a1cde717069",
-  devMode: {
-    // enable or disable dev mode here to create development groups and use the development vault.
-    enabled: true,
-    devGroups: [devGroups[0]],
-  },
+  // devMode: {
+  //   // enable or disable dev mode here to create development groups and use the development vault.
+  //   enabled: true,
+  //   devGroups: [devGroups[0]],
+  // },
 };
 
 type UserType = {
@@ -61,7 +61,7 @@ export default function Level0RegisterUser() {
       <div className="container">
         {!verifiedUser && (
           <>
-            <h1 className="title">Anonymous Registration</h1>
+            <h1>Anonymous Registration</h1>
             <p className="subtitle-page" style={{ marginBottom: 40 }}>
               Level 0: request for a userId and save it in a database.
             </p>
@@ -80,7 +80,7 @@ export default function Level0RegisterUser() {
 
         {verifiedUser && (
           <>
-            <h1 className="title">You have been registered</h1>
+            <h1>You have been registered</h1>
             <p className="subtitle-page">
               You shared an anonymous userId and saved it in a local database
             </p>

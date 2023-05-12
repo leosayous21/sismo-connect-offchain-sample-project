@@ -7,16 +7,10 @@ import {
 } from "@sismo-core/sismo-connect-react";
 import axios from "axios";
 import { useState } from "react";
-import { devGroups } from "../../config";
 
 export const sismoConnectConfig: SismoConnectClientConfig = {
   // You can create a new Sismo Connect app at https://factory.sismo.io
   appId: "0xf4977993e52606cfd67b7a1cde717069",
-  devMode: {
-    // Enable or disable dev mode here to create development groups and use the development vault.
-    enabled: true,
-    devGroups: [devGroups[0]],
-  },
 };
 
 type UserType = {
@@ -68,7 +62,7 @@ export default function Level1RegisterUser() {
       <div className="container">
         {!verifiedUser && (
           <>
-            <h1 className="title">Anonymous and Gated Registration</h1>
+            <h1>Anonymous and Gated Registration</h1>
             <p className="subtitle-page">
               Level 1: request for an anonymous userId, a Nouns DAO NFT ownership, a signed message with
               the username and save it in a database.
@@ -77,7 +71,6 @@ export default function Level1RegisterUser() {
             <div className="input-group">
               <label htmlFor="userName">Fill in your name</label>
               <input
-                className="text-input"
                 id="userName"
                 type="text"
                 value={userInput}
@@ -89,7 +82,7 @@ export default function Level1RegisterUser() {
             <SismoConnectButton
               config={sismoConnectConfig}
               auths={[{ authType: AuthType.VAULT }]}
-              claims={[{ groupId: devGroups[0].groupId }]}
+              claims={[{ groupId: "0xe9ed316946d3d98dfcd829a53ec9822e" }]}
               signature={{
                 message: userInput,
                 isSelectableByUser: true, // Allow the user to change the message (here his user name) during the Sismo Connect flow
@@ -97,14 +90,14 @@ export default function Level1RegisterUser() {
               onResponse={(response: SismoConnectResponse) => verify(response)}
               loading={loading}
               text="Register with Sismo"
-              callbackUrl={"http://localhost:3000/level-1-register-user"}
+              callbackPath={"level-1-register-user"}
             />
             <>{error}</>
           </>
         )}
         {verifiedUser && (
           <>
-            <h1 className="title">You have been registered</h1>
+            <h1>You have been registered</h1>
             <p className="subtitle-page">
               Your shared an anonymous userId, proved that you are a member of Nouns DAO NFT Holders
               group, signed a message with your username and saved it in a local database

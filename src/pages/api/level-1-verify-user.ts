@@ -39,9 +39,6 @@ const userStore = new MyLocalDataBase();
 const sismoConnectConfig: SismoConnectServerConfig = {
   // you can create a new Sismo Connect app at https://factory.sismo.io
   appId: "0xf4977993e52606cfd67b7a1cde717069",
-  devMode: {
-    enabled: true,
-  },
 };
 
 // create a SismoConnect instance
@@ -59,7 +56,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     const result: SismoConnectVerifiedResult = await sismoConnect.verify(response, {
       auths: [{ authType: AuthType.VAULT }],
-      claims: [{ groupId: devGroups[0].groupId }],
+      claims: [{ groupId: "0xe9ed316946d3d98dfcd829a53ec9822e" }],
       signature: {
         message: "",
         isSelectableByUser: true,
